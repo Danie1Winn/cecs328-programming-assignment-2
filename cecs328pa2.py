@@ -22,8 +22,10 @@ if __name__ == "__main__":
 
         grinders = int(input("Enter the number of grinders available: "))
 
+        print(f"\nTree heights: {trees}\nGrinders: {grinders}\n")
+
         result = max_trees_sum(trees, grinders)
-        print(result)
+        print(f"Maximum sum of trees that can be processed: {result}")
 
     except ValueError:
         print("Invalid input. Please enter integers.")
