@@ -17,14 +17,20 @@ def max_trees_sum(tree_array: list[int], grinder_count: int):
 
 if __name__ == "__main__":
     try:
+        grinders = int(input("Enter the number of grinders available: "))
+        
         tree_input = input("Enter the tree heights separated by spaces: ")
         trees = [int(x) for x in tree_input.split()]
 
-        grinders = int(input("Enter the number of grinders available: "))
+        while len(trees) < grinders:
+            print(f"\nError: You cannot have fewer trees ({len(trees)}) than grinders ({grinders}).")
+            tree_input = input("Please enter the tree heights again: ")
+            trees = [int(x) for x in tree_input.split()]
 
-        print(f"\nTree heights: {trees}\nGrinders: {grinders}\n")
 
         result = max_trees_sum(trees, grinders)
+        
+        print(f"\nTree heights: {trees}\nGrinders: {grinders}")
         print(f"Maximum sum of trees that can be processed: {result}")
 
     except ValueError:
