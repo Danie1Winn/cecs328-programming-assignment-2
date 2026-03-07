@@ -1,9 +1,6 @@
 def max_sum_tree(tree_array: list[int], number_of_tree_grinders: int):
     n = len(tree_array) # the length of the tree array
     k = number_of_tree_grinders # the number of grinders available
-
-    # checks if there are less trees than grinders
-    if n < k: return "You cannot send less trees than there are grinders."
     
     current_sum = sum(tree_array[:k])   # calculate sum of the first k trees
     max_sum = current_sum               # initialize max_sum with the sum of the first k trees
@@ -16,22 +13,33 @@ def max_sum_tree(tree_array: list[int], number_of_tree_grinders: int):
     return max_sum
 
 if __name__ == "__main__":
-    try:
-        grinders = int(input("Enter the number of grinders available: "))
+    # while loop to ensure valid grinder input
+    while True:
+        try:
+            grinders = int(input("Enter number of grinders: "))
+            break   # breaks loop if input is valid
+
+        except ValueError:
+            print("Invalid input. Please enter an integer\n") # prompts grinder input again if not integer
+
+    # while loop to ensure valid tree input
+    while True:
+        try:
+            tree_input = input("Enter tree heights separated by spaces: ")
+            trees = [int(x) for x in tree_input.split()]    # converts input into list (`trees`) of integers
+
+            # checks if there at least as many trees as grinders, if not prompts tree input again
+            if len(trees) < grinders:
+                print(f"\nError: Enter at least {grinders} trees.")
+                continue
+
+            break   # breaks loop if input is valid
+
+        except ValueError:
+            print("\nInvalid input. Please enter integers separated by spaces.") # prompts tree input again if not integers
+
+    result = max_sum_tree(trees, grinders) # calls max_sum_tree function with user inputs
         
-        tree_input = input("Enter the tree heights separated by spaces: ")
-        trees = [int(x) for x in tree_input.split()]
-
-        while len(trees) < grinders:
-            print(f"\nError: You cannot have fewer trees ({len(trees)}) than grinders ({grinders}).")
-            tree_input = input("Please enter the tree heights again: ")
-            trees = [int(x) for x in tree_input.split()]
-
-
-        result = max_sum_tree(trees, grinders)
-        
-        print(f"\nTree heights: {trees}\nGrinders: {grinders}")
-        print(f"Maximum sum of trees that can be processed: {result}")
-
-    except ValueError:
-        print("Invalid input. Please enter integers.")
+    # prints the user's inputs and the result
+    print(f"\nTree heights: {trees}\nGrinders: {grinders}")
+    print(f"Maximum sum of trees that can be processed: {result}")
