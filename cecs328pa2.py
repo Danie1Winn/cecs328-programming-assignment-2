@@ -1,6 +1,6 @@
-def max_trees_sum(tree_array: list[int], grinder_count: int):
+def max_sum_tree(tree_array: list[int], number_of_tree_grinders: int):
     n = len(tree_array) # the length of the tree array
-    k = grinder_count # the number of grinders available
+    k = number_of_tree_grinders # the number of grinders available
 
     # checks if there are less trees than grinders
     if n < k: return "You cannot send less trees than there are grinders."
@@ -28,7 +28,7 @@ if __name__ == "__main__":
             trees = [int(x) for x in tree_input.split()]
 
 
-        result = max_trees_sum(trees, grinders)
+        result = max_sum_tree(trees, grinders)
         
         print(f"\nTree heights: {trees}\nGrinders: {grinders}")
         print(f"Maximum sum of trees that can be processed: {result}")
