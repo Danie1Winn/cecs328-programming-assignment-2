@@ -17,6 +17,11 @@ if __name__ == "__main__":
     while True:
         try:
             grinders = int(input("Enter number of grinders: "))
+            # checks if grinder input is positive, prompts again if not
+            if grinders <= 0: 
+                print("\nError: Enter a positive integer for grinders.")
+                continue 
+
             break   # breaks loop if input is valid
 
         except ValueError:
@@ -27,6 +32,11 @@ if __name__ == "__main__":
         try:
             tree_input = input("Enter tree heights separated by spaces: ")
             trees = [int(x) for x in tree_input.split()]    # converts input into list (`trees`) of integers
+
+            # checks if all tree heights are positive, prompts again if not
+            if any(t <= 0 for t in trees):
+                print("\nError: Enter positive integers for tree heights.")
+                continue
 
             # checks if there at least as many trees as grinders, if not prompts tree input again
             if len(trees) < grinders:
